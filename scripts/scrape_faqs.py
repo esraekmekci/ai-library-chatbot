@@ -17,24 +17,22 @@ def scrape_faqs():
         questions = soup.find_all('div', class_='elementor-tab-title')
         answers = soup.find_all('div', class_='elementor-tab-content')
 
-        for question, answer in zip(questions, answers):
+        for i, (question, answer) in enumerate(zip(questions, answers)):
                 question_text = question.get_text(strip=True)
                 answer_text = answer.get_text(strip=True)
-                faqs.append({"question": question_text, "answer": answer_text})
-
-        return faqs
+                faqs.append(
+                    {"id": f"faq-{i}",
+                     "text": f"Question: {question_text}\nAnswer: {answer_text}",
+                     "metadata": {
+                        "category": "FAQ",
+                        "question": question_text,
+                        "answer": answer_text,
+                        "source_url": URL
+                     }
+                    })
 
     except Exception as e:
-        print(f"Error: {e}")
-        return faqs
+        print(f"Error scraping FAQs: {e}")
 
-if __name__ == "__main__":
-    faq_data = scrape_faqs()
+    return faqs
 
-    if faq_data:
-        with open("data/raw/faqs.txt", "w", encoding="utf-8") as f:
-            for faq in faq_data:
-                f.write(f"Question: {faq['question']}\nAnswer: {faq['answer']}\n\n")
-        print("Data successfully scraped and saved to faqs_data.txt")
-    else:
-        print("No data scraped.")
