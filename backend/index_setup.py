@@ -1,7 +1,7 @@
 from .config import PINECONE_API_KEY, PINECONE_ENV
 from .embedding import get_embeddings
 from pinecone import Pinecone, ServerlessSpec
-from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+from langchain_pinecone import PineconeVectorStore
 from langchain.schema import Document
 from tqdm.auto import tqdm
 import time
@@ -18,6 +18,18 @@ SCRAPER_CONFIGS = {
         "module": "scripts.scrape_announcements",
         "function": "scrape_announcements",
         "index_name": "announcements-index",
+        "dimension": 768
+    },
+    "usage": {
+        "module": "scripts.scrape_usage",
+        "function": "scrape_usage",
+        "index_name": "usage-index",
+        "dimension": 768
+    },
+    "pickedups": {
+        "module": "scripts.scrape_pickedups",
+        "function": "scrape_pickedups",
+        "index_name": "pickedups-index",
         "dimension": 768
     }
     # "events": {

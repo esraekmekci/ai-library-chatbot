@@ -1,5 +1,5 @@
 from .embedding import get_embeddings
-from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+from langchain_pinecone import PineconeVectorStore
 from .config import PINECONE_API_KEY, PINECONE_ENV
 from pinecone import Pinecone
 import datetime
@@ -11,6 +11,8 @@ def get_all_vectorstores():
     index_names = [
         "faq-index",
         "announcements-index",
+        "usage-index", 
+        "pickedups-index"
         # "events-index",
         # "tools-index",
         # "databases-index"

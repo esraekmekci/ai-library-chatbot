@@ -1,8 +1,8 @@
 streamlit
 langchain
 langchain-ollama
-langchain-pinecone
-pinecone-client
+langchain-pinecone>=0.1.0
+pinecone-client>=3.0.0
 langchain-google-vertexai
 tqdm
 python-dotenv
