@@ -1,7 +1,7 @@
 from .config import PINECONE_API_KEY, PINECONE_ENV
 from .embedding import get_embeddings
 from pinecone import Pinecone, ServerlessSpec
-from langchain_community.vectorstores import Pinecone as PineconeVectorStore
+from langchain_pinecone import PineconeVectorStore
 from langchain.schema import Document
 from tqdm.auto import tqdm
 import time
@@ -18,6 +18,12 @@ SCRAPER_CONFIGS = {
         "module": "scripts.scrape_announcements",
         "function": "scrape_announcements",
         "index_name": "announcements-index",
+        "dimension": 768
+    },
+    "guides": {
+        "module": "scripts.scrape_guides",
+        "function": "scrape_guides",
+        "index_name": "guides-index",
         "dimension": 768
     }
     # "events": {
@@ -40,6 +46,17 @@ SCRAPER_CONFIGS = {
     # }
 }
 
+def batch_add_documents(vectorstore, documents, batch_size=10, wait_time=30):
+    total = len(documents)
+    for i in range(0, total, batch_size):
+        batch = documents[i:i + batch_size]
+        print(f"Uploading batch {i//batch_size + 1} with {len(batch)} documents...")
+        vectorstore.add_documents(batch)
+        if i + batch_size < total:
+            print(f"Waiting {wait_time} seconds before next batch...")
+            time.sleep(wait_time)
+    print("All documents uploaded.")
+
 def setup_index(key: str):
     config = SCRAPER_CONFIGS[key]
     module = import_module(config["module"])
@@ -61,10 +78,10 @@ def setup_index(key: str):
     index = pc.Index(config["index_name"])
     time.sleep(1)
 
-    if index.describe_index_stats().total_vector_count > 0:
-        print(f"[{key}] Deleting existing vectors...")
-        index.delete(delete_all=True)
-        time.sleep(2)
+    # if index.describe_index_stats().total_vector_count > 0:
+    #     print(f"[{key}] Deleting existing vectors...")
+    #     index.delete(delete_all=True)
+    #     time.sleep(2)
     
     embedder = get_embeddings()
 
@@ -79,8 +96,7 @@ def setup_index(key: str):
         for doc in docs
     ]
 
-    print(f"[{key}] Adding {len(langchain_docs)} documents...")
-    vectorstore.add_documents(langchain_docs)
+    batch_add_documents(vectorstore, langchain_docs, batch_size=20, wait_time=15)
 
     print(f"[{key}] Indexing complete.")
 if __name__ == "__main__":

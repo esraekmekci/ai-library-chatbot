@@ -11,6 +11,7 @@ def get_all_vectorstores():
     index_names = [
         "faq-index",
         "announcements-index",
+        "guides-index",
         # "events-index",
         # "tools-index",
         # "databases-index"
@@ -63,7 +64,7 @@ Query: {query}
 <|start_header_id|>system<|end_header_id|>
 Today's date is {datetime.datetime.now().strftime('%Y-%m-%d')}.
 You are an AI assistant for the IZTECH Library. Use only the context below to answer the question. If unsure, say you don't know.
-At the end of your answer, include the source link from the context.
+At the end of your answer, in a new line, include the source link from the context.
 
 Context:
 {context_block}
