@@ -12,6 +12,8 @@ def get_all_vectorstores():
         "faq-index",
         "announcements-index",
         "guides-index",
+        "usage-index", 
+        "pickedups-index"
         # "events-index",
         # "tools-index",
         # "databases-index"

@@ -25,6 +25,18 @@ SCRAPER_CONFIGS = {
         "function": "scrape_guides",
         "index_name": "guides-index",
         "dimension": 768
+    },
+    "usage": {
+        "module": "scripts.scrape_usage",
+        "function": "scrape_usage",
+        "index_name": "usage-index",
+        "dimension": 768
+    },
+    "pickedups": {
+        "module": "scripts.scrape_pickedups",
+        "function": "scrape_pickedups",
+        "index_name": "pickedups-index",
+        "dimension": 768
     }
     # "events": {
     #     "module": "scrapers.scrape_events",
