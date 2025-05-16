@@ -1,0 +1,14 @@
+https://gcris.iyte.edu.tr/   -> makaleler var, title - abstract şeklinde tutabiliriz
+
+https://iyte.overdrive.com/  -> ebook, audiobook, magazineler var
+
+https://library.iyte.edu.tr/guncel-dergi-katalogu/ -> az bilgi var ama güncwl sorularda sorulabilir
+
+https://catalog.iyte.edu.tr/client/tr_TR/default_tr/search/results?rm=TEZ+KOLEKSIYONU0%7C%7C%7C1%7C%7C%7C0%7C%7C%7Ctrue&te=ILS  -> tez portalı
+
+https://catalog.iyte.edu.tr/client/tr_TR/default_tr/search/results?rm=KITAP+KOLEKSIY0%7C%7C%7C1%7C%7C%7C0%7C%7C%7Ctrue&te=ILS -> kitap koleksiyonu
+
+https://catalog.iyte.edu.tr/client/tr_TR/default_tr/search/results?rm=E-KITAP+KOLEKS0%7C%7C%7C1%7C%7C%7C0%7C%7C%7Ctrue&te=ILS -> e kitap koleksiyonu
+
+
+* tez ve e kitap yaparsak belki çok uzar ama bence kitapları ve bulundukları yerleri çekebiliriz

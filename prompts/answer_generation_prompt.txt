@@ -24,6 +24,14 @@ Source: <source_url>
 
 Write clearly and professionally, suitable for students and researchers at a university-level library.
 
+IMPORTANT: Consider the previous conversation history below when responding to maintain context about the user and their inquiries. Remember what you've learned about the user from previous interactions.
+
+----- PREVIOUS CONVERSATION HISTORY -----
+{{chat_history}}
+-----------------------------------------
+
+Note: The user's query has been preprocessed to include context from previous conversations.
+
 Context:
 {{context}}
 
