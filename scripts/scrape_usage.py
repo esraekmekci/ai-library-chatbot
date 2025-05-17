@@ -4,7 +4,7 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-URL = "https://library.iyte.edu.tr/hakkimizda/yararlanma-kosullari/"
+URL = "https://library.iyte.edu.tr/en/about-us/conditions-of-use/"
 #OUTPUT_FILE = "cleaned_yararlanma_kosullari_structured.txt"
 
 def scrape_conditions_of_use():

@@ -32,14 +32,9 @@ def get_all_vectorstores():
         EMBEDDING_MODEL = get_embeddings()
 
     index_names = [
-        "faq-index",
-        "announcements-index",
-        "usage-index", 
-        "pickedups-index",
+        "general-index",
         "guides-index",
-        # "events-index",
-        # "tools-index",
-        # "databases-index"
+        "book-index"
     ]
 
     vectorstores = []

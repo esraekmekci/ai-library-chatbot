@@ -5,7 +5,7 @@ import re
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-URL = "https://library.iyte.edu.tr/hizli-erisim/sizin-icin-sectiklerimiz/"
+URL = "https://library.iyte.edu.tr/en/quick-links/picked-ups-for-you/"
 
 EXCLUDE_PATTERNS = [
     r"İYTE KÜTÜPHANE", r"IZTECH LIBRARY",

@@ -11,13 +11,13 @@ SCRAPER_CONFIGS = {
     "faq": {
         "module": "scripts.scrape_faqs",
         "function": "scrape_faqs",
-        "index_name": "faq-index",
+        "index_name": "general-index",
         "dimension": 768
     },
     "announcements": {
         "module": "scripts.scrape_announcements",
         "function": "scrape_announcements",
-        "index_name": "announcements-index",
+        "index_name": "general-index",
         "dimension": 768
     },
     "guides": {
@@ -29,33 +29,21 @@ SCRAPER_CONFIGS = {
     "usage": {
         "module": "scripts.scrape_usage",
         "function": "scrape_usage",
-        "index_name": "usage-index",
+        "index_name": "general-index",
         "dimension": 768
     },
     "pickedups": {
         "module": "scripts.scrape_pickedups",
         "function": "scrape_pickedups",
-        "index_name": "pickedups-index",
+        "index_name": "general-index",
+        "dimension": 768
+    },
+    "book_loc": {
+        "module": "scripts.scrape_books_with_locations",
+        "function": "scrape_book_locations",
+        "index_name": "book-index",
         "dimension": 768
     }
-    # "events": {
-    #     "module": "scrapers.scrape_events",
-    #     "function": "scrape_events",
-    #     "index_name": "events-index",
-    #     "dimension": 768
-    # },
-    # "tools": {
-    #     "module": "scrapers.scrape_tools",
-    #     "function": "scrape_tools",
-    #     "index_name": "tools-index",
-    #     "dimension": 768
-    # },
-    # "databases": {
-    #     "module": "scrapers.scrape_databases",
-    #     "function": "scrape_databases",
-    #     "index_name": "databases-index",
-    #     "dimension": 768
-    # }
 }
 
 def batch_add_documents(vectorstore, documents, batch_size=10, wait_time=30):
@@ -112,5 +100,6 @@ def setup_index(key: str):
 
     print(f"[{key}] Indexing complete.")
 if __name__ == "__main__":
-    for key in SCRAPER_CONFIGS.keys():
-        setup_index(key)
+    # for key in SCRAPER_CONFIGS.keys():
+    #     setup_index(key)
+    setup_index("book_loc")
