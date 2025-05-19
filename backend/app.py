@@ -3,11 +3,23 @@ from .rag_pipeline import augment_prompt, load_preprocess_prompt, format_chat_hi
 from langchain_google_vertexai import VertexAI
 from html import unescape
 import re
+import json
 
 def clean_llm_output(output: str) -> str:
     output = re.sub(r"<br\s*/?>", "\n", output)
     output = re.sub(r"<.*?>", "", output)
     return unescape(output).strip()
+
+def clean_llm_output_full(raw_text: str) -> str:
+    if raw_text.strip().startswith("```"):
+        raw_text = "\n".join(
+            line for line in raw_text.splitlines() if not line.strip().startswith("```")
+        )
+
+    text = re.sub(r"<br\s*/?>", "\n", raw_text)
+    text = re.sub(r"<.*?>", "", text)
+
+    return  json.loads(unescape(text).strip())
 
 llm_model = VertexAI(
     model_name="gemini-2.0-flash-001", 
@@ -38,7 +50,7 @@ def ask(query: str, chat_history=None) -> tuple:
         preprocess_prompt = preprocess_prompt.replace("{{chat_history}}", "No previous conversation.")
     
     # Get the preprocessed query that now includes context from chat history
-    preprocessed_query = clean_llm_output(llm_model.invoke(preprocess_prompt))
+    preprocessed_query = clean_llm_output_full(llm_model.invoke(preprocess_prompt))
 
     print("\n--- PREPROCESSED QUERY ---\n")
     print(preprocessed_query)
@@ -56,4 +68,4 @@ def ask(query: str, chat_history=None) -> tuple:
     response = clean_llm_output(llm_model.invoke(augmented_query))
     
     # Return both the response and the preprocessed query
-    return response.strip(), preprocessed_query.strip()
+    return response.strip(), preprocessed_query

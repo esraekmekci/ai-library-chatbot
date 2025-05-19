@@ -63,10 +63,10 @@ def augment_prompt(query: str, chat_history=None):
     #SCORE_THRESHOLD = 0.4
     for name, store in vectorstores:
         try:
-            results = store.similarity_search_with_score(query, k=5)
+            results = store.similarity_search_with_score(query["query"], k=5)
 
             # bi bunu da denicem hangisi daha iyi calisiyo diye 
-            #results = store.max_marginal_relevance_search_with_score(query, k=6, fetch_k=10, lambda_mult=0.5)
+            #results = store.max_marginal_relevance_search_with_score(query["query"], k=6, fetch_k=10, lambda_mult=0.5)
             
             for doc, score in results:
                 #if score >= SCORE_THRESHOLD:
@@ -105,7 +105,7 @@ def augment_prompt(query: str, chat_history=None):
         augmented_prompt = system_prompt.replace("{{context}}", context_block)
     
     # Always include the preprocessed query
-    augmented_prompt = augmented_prompt.replace("{{query}}", query)
+    augmented_prompt = augmented_prompt.replace("{{query}}", query["query"]).replace("{{language}}", query["language"])
     
     # Include the full chat history if provided
     if chat_history and len(chat_history) > 0:

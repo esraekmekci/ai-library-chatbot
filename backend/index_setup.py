@@ -26,6 +26,12 @@ SCRAPER_CONFIGS = {
         "index_name": "guides-index",
         "dimension": 768
     },
+    "databases": {
+        "module": "scripts.scrape_databases",
+        "function": "scrape_databases",
+        "index_name": "general-index",
+        "dimension": 768
+    },
     "usage": {
         "module": "scripts.scrape_usage",
         "function": "scrape_usage",
@@ -42,6 +48,24 @@ SCRAPER_CONFIGS = {
         "module": "scripts.scrape_books_with_locations",
         "function": "scrape_book_locations",
         "index_name": "book-index",
+        "dimension": 768
+    },
+    "book_facets": {
+        "module": "scripts.scrape_book_collection",
+        "function": "scrape_book_facets",
+        "index_name": "book-index",
+        "dimension": 768
+    },
+    "thesis_facets": {
+        "module": "scripts.scrape_thesis_collection",
+        "function": "scrape_thesis_facets",
+        "index_name": "article-index",
+        "dimension": 768
+    },
+    "article_facets": {
+        "module": "scripts.scrape_article_collection",
+        "function": "scrape_article_facets",
+        "index_name": "article-index",
         "dimension": 768
     }
 }
@@ -102,4 +126,4 @@ def setup_index(key: str):
 if __name__ == "__main__":
     # for key in SCRAPER_CONFIGS.keys():
     #     setup_index(key)
-    setup_index("book_loc")
+    setup_index("thesis_facets")
