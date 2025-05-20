@@ -34,7 +34,8 @@ def get_all_vectorstores():
     index_names = [
         "general-index",
         "guides-index",
-        "book-index"
+        "book-index",
+        "article-index",
     ]
 
     vectorstores = []
