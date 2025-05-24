@@ -71,6 +71,7 @@ st.markdown("""
     word-break: break-word;
     overflow-wrap: break-word;
     white-space: pre-wrap;
+    line-height: 1.4;
 }
 
 
@@ -86,7 +87,7 @@ st.markdown("""
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "H! I am Leblebi, I can understand the leblebi before you even say leb. How can I assist you with the IZTECH Library today?"
+        "content": "Hi! I am Leblebi, I can understand the leblebi before you even say leb. How can I assist you with the IZTECH Library today?"
     }]
 
 # Chat mesajlarını göster

@@ -98,7 +98,7 @@ def augment_prompt(query: str, chat_history=None):
 
         # Get the top 10 results
         top_contexts = [
-            f"From: {index_name}\nDocument: {doc.page_content}\nSource URL: {doc.metadata.get('source_url', '')}\nNormalized Score: {score:.2f}"
+            f"From: {index_name}\nDocument: {doc.page_content}\nMetadata: {doc.metadata}\nNormalized Score: {score:.2f}"
             for doc, score, index_name in all_results[:10]
         ]
 
