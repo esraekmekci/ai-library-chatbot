@@ -4,6 +4,8 @@ import base64
 import streamlit as st
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from backend.app import ask
+from markdown import markdown
+import html
 
 # Logo yükle
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -56,7 +58,6 @@ st.markdown("""
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     word-break: break-word;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
 }
 
 .bot-msg {
@@ -70,7 +71,6 @@ st.markdown("""
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     word-break: break-word;
     overflow-wrap: break-word;
-    white-space: pre-wrap;
     line-height: 1.4;
 }
 
@@ -78,6 +78,15 @@ st.markdown("""
 .icon {
     font-size: 22px;
     margin: 0 8px;
+}
+            
+.bot-msg ul {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.bot-msg li {
+    margin-bottom: 4px;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -105,11 +114,13 @@ for message in st.session_state.messages:
         </div>
         """, unsafe_allow_html=True)
     else:
+        safe_content = html.escape(message["content"])
+        bot_html = markdown(safe_content)
         st.markdown(f"""
         <div class='msg-wrapper'>
             <div class='msg-row'>
                 <div class='icon'>🤖</div>
-                <div class='bot-msg'>{message['content']}</div>
+                <div class='bot-msg'>{bot_html}</div>
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -144,11 +155,13 @@ if user_input:
         })
 
     # Göster bot cevabı
+    safe_content = html.escape(response)
+    bot_html = markdown(safe_content)
     st.markdown(f"""
     <div class='chat-container'>
     <div class='msg-row' style='justify-content: flex-start;'>
         <div class='icon'>🤖</div>
-        <div class='bot-msg'>{response}</div>
+        <div class='bot-msg'>{bot_html}</div>
     </div>
     </div>
     """, unsafe_allow_html=True)
