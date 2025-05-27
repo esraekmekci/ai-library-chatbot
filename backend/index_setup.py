@@ -62,9 +62,9 @@ SCRAPER_CONFIGS = {
         "index_name": "article-index",
         "dimension": 768
     },
-    "article_facets": {
-        "module": "scripts.scrape_article_collection",
-        "function": "scrape_article_facets",
+    "articles": {
+        "module": "scripts.scrape_articles",
+        "function": "scrape_articles",
         "index_name": "article-index",
         "dimension": 768
     }
@@ -126,4 +126,4 @@ def setup_index(key: str):
 if __name__ == "__main__":
     # for key in SCRAPER_CONFIGS.keys():
     #     setup_index(key)
-    setup_index("thesis_facets")
+    setup_index("scrape_articles")
